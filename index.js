@@ -23,7 +23,7 @@ const PASSWORD = process.env.TWITTER_PASSWORD;
     await page.click("//a[@aria-label='Post']");
 
     await page.fill("//div[@data-viewportview='true']//div[@class='DraftEditor-editorContainer']/div[@role='textbox']", "you are the dumbest cabbage");
-    await page.click("//div[@data-testid='tweetButton']");
+    // await page.click("//div[@data-testid='tweetButton']");
 
     await context.close();
     await browser.close();
