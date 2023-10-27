@@ -14,10 +14,13 @@ async function loginToTwitter(page) {
     // por alguna razón chromium usando node está en español (testeando no XD)
     // (supongo que porque nodejs recoge el lang del sistema)
     // if (lang == 'es-ES')
-    //  await page.getByRole('button', { name: 'Siguiente' }).click();
+    //     await page.getByRole('button', { name: 'Siguiente' }).click();
     // else
         await page.getByRole('button', { name: 'Next' }).click();
-
+        console.log('next clicked')
+    // await page.getByTestId('ocfEnterTextTextInput').click();
+    // await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
+    // await page.getByTestId('ocfEnterTextNextButton').click();
     await page.fill('input[autocomplete="current-password"]', PASSWORD);
     await page.getByTestId('LoginForm_Login_Button').click();
     
