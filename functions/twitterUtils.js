@@ -18,9 +18,7 @@ async function loginToTwitter(page) {
     // else
         await page.getByRole('button', { name: 'Next' }).click();
         console.log('next clicked')
-    await page.getByTestId('ocfEnterTextTextInput').click();
-    await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
-    await page.getByTestId('ocfEnterTextNextButton').click();
+
     await page.fill('input[autocomplete="current-password"]', PASSWORD);
     console.log('password clicked')
     await page.getByTestId('LoginForm_Login_Button').click();
@@ -33,14 +31,13 @@ async function loginToTwitter(page) {
 async function composeTweetWithImage(page) {
     const finalWord = await createImage()
     console.log('image created')
-    // await page.fill('div[aria-label="Post text"]', finalWord);
-    // console.log('text typed')
+    await page.fill('div[aria-label="Post text"]', finalWord);
+    console.log('text typed')
     await page.getByRole('button', { name: 'Add photos or video' }).click();
     console.log('photo added')
     const inputFile = await page.locator('input[type="file"]');
     await inputFile.setInputFiles('reaction.jpg');
-    // await page.getByTestId('tweetButtonInline').click();
-    // await page.waitForTimeout(1000);
+    await page.getByTestId('tweetButtonInline').click();
     console.log('Finished: '+new Date())
 }
 
