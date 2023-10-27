@@ -22,7 +22,9 @@ async function loginToTwitter(page) {
     // await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
     // await page.getByTestId('ocfEnterTextNextButton').click();
     await page.fill('input[autocomplete="current-password"]', PASSWORD);
+    console.log('password filled')
     await page.getByTestId('LoginForm_Login_Button').click();
+    console.log('login clicked')
     
 }
 
@@ -31,6 +33,7 @@ async function loginToTwitter(page) {
 async function composeTweetWithImage(page) {
     const finalWord = await createImage()
     await page.fill('div[aria-label="Post text"]', finalWord);
+    console.log('text typed')
     await page.getByRole('button', { name: 'Add photos or video' }).click();
     const inputFile = await page.locator('input[type="file"]');
     await inputFile.setInputFiles('reaction.jpg');
