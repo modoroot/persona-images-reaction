@@ -31,8 +31,8 @@ async function loginToTwitter(page) {
 async function composeTweetWithImage(page) {
     const finalWord = await createImage()
     console.log('image created')
-    await page.fill('div[aria-label="Post text"]', finalWord);
-    console.log('text typed')
+    // await page.fill('div[aria-label="Post text"]', finalWord);
+    // console.log('text typed')
     await page.getByRole('button', { name: 'Add photos or video' }).click();
     const inputFile = await page.locator('input[type="file"]');
     await inputFile.setInputFiles('reaction.jpg');
