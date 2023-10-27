@@ -34,6 +34,7 @@ async function composeTweetWithImage(page) {
     // await page.fill('div[aria-label="Post text"]', finalWord);
     // console.log('text typed')
     await page.getByRole('button', { name: 'Add photos or video' }).click();
+    console.log('photo added')
     const inputFile = await page.locator('input[type="file"]');
     await inputFile.setInputFiles('reaction.jpg');
     // await page.getByTestId('tweetButtonInline').click();
