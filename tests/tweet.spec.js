@@ -1,16 +1,9 @@
 // @ts-check
-const { test, expect } = require('@playwright/test');
+const { test } = require('@playwright/test'); 
 const { chromium } = require('playwright');
 const { loginToTwitter, composeTweetWithImage, closeBrowser } = require('../functions/twitterUtils.js');
-require('dotenv').config();
 
-const USERNAME = process.env.TWITTER_USERNAME;
-const PASSWORD = process.env.TWITTER_PASSWORD;
-const TWEET_TEXT = "epic test";
-const IMAGE_PATH = "images/portraits/Goro-shock.webp";
-
-
-test('tweet persona reaction', async () => {
+test('tweet', async () => {
   const browser = await chromium.launch({
     headless: false,
     slowMo: 500,
@@ -21,10 +14,9 @@ test('tweet persona reaction', async () => {
 
   try {
     await page.goto('https://twitter.com/i/flow/login');
-    await loginToTwitter(page, USERNAME, PASSWORD);
-    await composeTweetWithImage(page, TWEET_TEXT, IMAGE_PATH);
+    await loginToTwitter(page);
+    await composeTweetWithImage(page);
   } finally {
     await closeBrowser(browser);
   }
-});
-
+})

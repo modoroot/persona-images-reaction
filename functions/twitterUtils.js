@@ -13,9 +13,9 @@ async function loginToTwitter(page) {
     });
     // por alguna razón chromium usando node está en español (testeando no XD)
     // (supongo que porque nodejs recoge el lang del sistema)
-    if (lang == 'es-ES')
-        await page.getByRole('button', { name: 'Siguiente' }).click();
-    else
+    // if (lang == 'es-ES')
+    //  await page.getByRole('button', { name: 'Siguiente' }).click();
+    // else
         await page.getByRole('button', { name: 'Next' }).click();
 
     await page.fill('input[autocomplete="current-password"]', PASSWORD);
