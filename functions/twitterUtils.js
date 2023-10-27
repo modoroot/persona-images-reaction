@@ -14,7 +14,7 @@ async function loginToTwitter(page) {
     // por alguna razón chromium usando node está en español (testeando no XD)
     // (supongo que porque nodejs recoge el lang del sistema)
     // if (lang == 'es-ES')
-    //     await page.getByRole('button', { name: 'Siguiente' }).click();
+        // await page.getByRole('button', { name: 'Siguiente' }).click();
     // else
         await page.getByRole('button', { name: 'Next' }).click();
         console.log('next clicked')
@@ -29,14 +29,14 @@ async function loginToTwitter(page) {
 
 async function composeTweetWithImage(page) {
     const finalWord = await createImage()
-    await page.getByTestId('tweetTextarea_0').locator('div').nth(2).click();
-    await page.fill('div[aria-label="Post text"]', finalWord);
+    await page.locator('label > div > .css-901oao > .css-1dbjc4n').click();
+    await page.getByTestId('tweetTextarea_0').fill(finalWord);
     console.log('text typed')
     await page.getByRole('button', { name: 'Add photos or video' }).click();
     const inputFile = await page.locator('input[type="file"]');
     await inputFile.setInputFiles('reaction.jpg');
     await page.getByTestId('tweetButtonInline').click();
-    await page.waitForTimeout(1000);
+    // await page.waitForTimeout(1000);
 }
 
 async function closeBrowser(browser) {
