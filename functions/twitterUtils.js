@@ -44,6 +44,7 @@ async function composeTweetWithImage(page) {
     await inputFile.setInputFiles('reaction.jpg');
     await page.getByTestId('tweetButtonInline').click();
     console.log('Finished: '+new Date())
+    await page.waitForTimeout(2000);
 }
 
 async function closeBrowser(browser) {
