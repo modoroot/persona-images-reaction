@@ -1,3 +1,4 @@
+const { expect } = require('@playwright/test');
 const { createImage } = require('./imgReactionGenerator');
 
 require('dotenv').config();
@@ -21,12 +22,19 @@ async function loginToTwitter(page) {
 
     await page.fill('input[autocomplete="current-password"]', PASSWORD);
     console.log('password clicked')
-    await page.getByTestId('LoginForm_Login_Button').click();
+
+    const emailCheck = await page.$('[data-testid="ocfEnterTextTextInput"]');
+    console.log("email check: "+emailCheck)
+
+    if(emailCheck){
+        await page.getByTestId('ocfEnterTextTextInput').click();
+        await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
+        await page.getByTestId('ocfEnterTextNextButton').click();
+    }else{
+        await page.getByTestId('LoginForm_Login_Button').click();
+    }
     console.log('login clicked')
-    
 }
-
-
 
 async function composeTweetWithImage(page) {
     const finalWord = await createImage()
