@@ -3,7 +3,7 @@ const { loginToTwitter, composeTweetWithImage, closeBrowser } = require('./funct
 
 (async () => {
   const browser = await chromium.launch({
-    headless: false,
+    headless: true,
     slowMo: 500,
   });
 
