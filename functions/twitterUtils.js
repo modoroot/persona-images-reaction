@@ -1,6 +1,4 @@
-const { expect } = require('@playwright/test');
 const { createImage } = require('./imgReactionGenerator');
-
 require('dotenv').config();
 
 const USERNAME = process.env.TWITTER_USERNAME;
@@ -28,18 +26,18 @@ async function loginToTwitter(page) {
     // const emailCheck = await page.$('div[data-testid="UserCell"]');
     // console.log("email check: "+emailCheck)
 
-    await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
-    await page.getByTestId('ocfEnterTextNextButton').click();
+    // await page.getByTestId('ocfEnterTextTextInput').fill('');
+    // await page.getByTestId('ocfEnterTextNextButton').click();
 }
 
-// await page.getByTestId('UserCell').click();
+
 
 
 async function composeTweetWithImage(page) {
     const finalWord = await createImage()
     console.log('image created')
     await page.fill('div[aria-label="Post text"]', finalWord);
-    console.log('text typed')
+    console.log('text typed: '+finalWord)
     await page.getByRole('button', { name: 'Add photos or video' }).click();
     console.log('photo added')
     const inputFile = await page.locator('input[type="file"]');
