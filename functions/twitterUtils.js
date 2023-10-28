@@ -22,14 +22,14 @@ async function loginToTwitter(page) {
 
     await page.fill('input[autocomplete="current-password"]', PASSWORD);
     console.log('password clicked')
+    await page.getByTestId('LoginForm_Login_Button').click();
+    console.log('login clicked')
     
     // const emailCheck = await page.$('div[data-testid="UserCell"]');
     // console.log("email check: "+emailCheck)
 
-    // await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
-    // await page.getByTestId('ocfEnterTextNextButton').click();
-    await page.getByTestId('LoginForm_Login_Button').click();
-    console.log('login clicked')
+    await page.getByTestId('ocfEnterTextTextInput').fill('modoroot@protonmail.com');
+    await page.getByTestId('ocfEnterTextNextButton').click();
 }
 
 // await page.getByTestId('UserCell').click();
