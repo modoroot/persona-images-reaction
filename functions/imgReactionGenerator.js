@@ -28,7 +28,7 @@ async function loadRandomPortrait() {
     const imagePath = path.join(directoryPath, randomImageFile);
 
     const loadedPortrait = await Jimp.read(imagePath);
-
+    console.log('portrait: '+randomImageFile)
     return loadedPortrait;
   } catch (error) {
     console.error('Error al cargar la imagen:', error);
@@ -48,22 +48,24 @@ async function createImage() {
   const imageHeight = height - 70;
   loadedPortrait.resize(imageWidth, imageHeight);
 
-  image.composite(loadedPortrait, 0, 0);
+  const x = (width - imageWidth) / 2;
+  const y = 0;
+
+  image.composite(loadedPortrait, x, y);
 
   const customFont = await Jimp.loadFont('fonts/o5TvTGMXghJLYA7zsZhIzp8n.ttf.fnt');
 
   const randomWord = await getRandomWord();
   const finalWord = randomWord.toUpperCase() + "!";
   
-  const x = width / 2 - Jimp.measureText(customFont, finalWord) / 2;
-  const y = height - 85;
+  const textX = width / 2 - Jimp.measureText(customFont, finalWord) / 2;
+  const textY = height - 85;
 
-  image.print(customFont, x, y, finalWord);
+  image.print(customFont, textX, textY, finalWord);
 
   await image.writeAsync('reaction.jpg');
 
   return finalWord;
 }
-
 
 module.exports = { createImage }
