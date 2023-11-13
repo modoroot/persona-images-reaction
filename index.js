@@ -2,7 +2,7 @@ const { chromium } = require('playwright');
 const { loginToTwitter, composeTweetWithImage, closeBrowser } = require('./functions/twitterUtils.js');
 const cron = require('node-cron');
 
-cron.schedule('15 * * * *', () => {
+cron.schedule('0,30 * * * *', () => {
   (async () => {
     const browser = await chromium.launch({
       headless: true,
